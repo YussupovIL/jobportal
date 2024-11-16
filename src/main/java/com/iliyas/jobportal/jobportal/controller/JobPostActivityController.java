@@ -20,10 +20,9 @@ public class JobPostActivityController {
     public JobPostActivityController(UsersService userService) {
         this.userService = userService;
 
-
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard/")
     public String searchJobs(Model model)
     {
         Object currentUserProfile = userService.getCurrentUserProfile();
