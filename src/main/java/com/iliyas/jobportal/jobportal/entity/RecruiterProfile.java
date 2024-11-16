@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class RecruiterProfile {
 
     @Id
-
     private int userAccountId;
 
     @OneToOne
