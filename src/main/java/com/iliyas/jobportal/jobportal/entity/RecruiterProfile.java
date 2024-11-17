@@ -16,7 +16,7 @@ public class RecruiterProfile {
 
     private String city;
 
-    private String firstname;
+    private String firstName;
 
     private String lastName;
 
@@ -32,11 +32,11 @@ public class RecruiterProfile {
     public RecruiterProfile() {
     }
 
-    public RecruiterProfile(int userAccountId, Users userId, String city, String firstname, String lastName, String state, String country, String company, String profilePhoto) {
+    public RecruiterProfile(int userAccountId, Users userId, String city, String firstName, String lastName, String state, String country, String company, String profilePhoto) {
         this.userAccountId = userAccountId;
         this.userId = userId;
         this.city = city;
-        this.firstname = firstname;
+        this.firstName = firstName;
         this.lastName = lastName;
         this.state = state;
         Country = country;
@@ -72,12 +72,12 @@ public class RecruiterProfile {
         this.city = city;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
     public String getLastName() {
@@ -126,7 +126,7 @@ public class RecruiterProfile {
                 "userAccountId=" + userAccountId +
                 ", userId=" + userId +
                 ", city='" + city + '\'' +
-                ", firstname='" + firstname + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", state='" + state + '\'' +
                 ", Country='" + Country + '\'' +

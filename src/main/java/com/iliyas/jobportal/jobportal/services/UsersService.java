@@ -54,21 +54,17 @@ public class UsersService {
         return usersRepository.findByEmail(email);
     }
 
-    public Object getCurrentUserProfile()
-    {
+    public Object getCurrentUserProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(!(authentication instanceof AnonymousAuthenticationToken))
-        {
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String username = authentication.getName();
             Users user = usersRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             int userId = user.getUserId();
-            if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
+            if (authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))) {
                 RecruiterProfile recruiterProfile = recruiterProfileRepository.findById(userId).orElse(new RecruiterProfile());
                 return recruiterProfile;
-            }
-            else
-            {
+            } else {
                 JobSeekerProfile jobSeekerProfile = jobSeekerProfileRepository.findById(userId).orElse(new JobSeekerProfile());
                 return jobSeekerProfile;
 
