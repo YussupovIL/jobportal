@@ -1,19 +1,24 @@
 package com.iliyas.jobportal.jobportal.controller;
 
 import com.iliyas.jobportal.jobportal.entity.JobPostActivity;
+import com.iliyas.jobportal.jobportal.entity.RecruiterJobsDto;
+import com.iliyas.jobportal.jobportal.entity.RecruiterProfile;
 import com.iliyas.jobportal.jobportal.entity.Users;
 import com.iliyas.jobportal.jobportal.services.JobPostActivityService;
 import com.iliyas.jobportal.jobportal.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class JobPostActivityController {
@@ -39,6 +44,10 @@ public class JobPostActivityController {
         {
             String currentUserName = authentication.getName();
             model.addAttribute("username", currentUserName);
+            if(authentication.getAuthorities().contains(new SimpleGrantedAuthority("Recruiter"))){
+                List<RecruiterJobsDto> recruiterJobs = jobPostActivityService.getRecruiterJobs(((RecruiterProfile)currentUserProfile).getUserAccountId());
+                model.addAttribute("jobPost", recruiterJobs);
+            }
         }
         model.addAttribute("user", currentUserProfile);
 
@@ -62,13 +71,15 @@ public class JobPostActivityController {
         }
         jobPostActivity.setPostedDate(new Date());
         model.addAttribute("jobPostActivity", jobPostActivity);
-        JobPostActivity saved = jobPostActivityService.addNew(jobPostActivity);
-
-
-
-
-
+        jobPostActivityService.addNew(jobPostActivity);
         return "redirect:/dashboard/";
+    }
+    @PostMapping("dashboard/edit/{id}")
+    public String editJob(@PathVariable("id") int id, Model model){
+        JobPostActivity jobPostActivity = jobPostActivityService.getOne(id);
+        model.addAttribute("jobPostActivity", jobPostActivity);
+        model.addAttribute("user", userService.getCurrentUserProfile());
+        return "add-jobs";
     }
 
 

@@ -111,7 +111,7 @@ public class JobPostActivity {
         return descriptionOfJob;
     }
 
-    public void setDescriptionOfJob(String description) {
+    public void setDescriptionOfJob(String descriptionOfJob) {
         this.descriptionOfJob = descriptionOfJob;
     }
 
@@ -155,7 +155,7 @@ public class JobPostActivity {
         this.jobTitle = jobTitle;
     }
 
-    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompanyId, Boolean isActive, Boolean isSaved, String description, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
+    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompanyId, Boolean isActive, Boolean isSaved, String descriptionOfJob, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
         this.jobPostId = jobPostId;
         this.postedById = postedById;
         this.jobLocationId = jobLocationId;
