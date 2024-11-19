@@ -16,13 +16,13 @@ public class JobPostActivity {
     @JoinColumn(name = "postedById", referencedColumnName = "userId")
     private Users postedById;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "jobLocationId", referencedColumnName = "Id")
-    private JobLocation jobLocation;
+    private JobLocation jobLocationId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "jobCompanyId", referencedColumnName = "Id")
-    private JobCompany jobCompany;
+    private JobCompany jobCompanyId;
 
 
     @Transient
@@ -31,8 +31,8 @@ public class JobPostActivity {
     @Transient
     private Boolean isSaved;
 
-    @Length(max = 10000)
-    private String description;
+    @Length(max = 8000)
+    private String descriptionOfJob;
 
     private String jobType;
     private String salary;
@@ -46,11 +46,11 @@ public class JobPostActivity {
         return "JobPostActivity{" +
                 "jobPostId=" + jobPostId +
                 ", postedById=" + postedById +
-                ", jobLocation=" + jobLocation +
-                ", jobCompany=" + jobCompany +
+                ", jobLocationId=" + jobLocationId +
+                ", jobCompanyId=" + jobCompanyId +
                 ", isActive=" + isActive +
                 ", isSaved=" + isSaved +
-                ", description='" + description + '\'' +
+                ", descriptionOfJob='" + descriptionOfJob + '\'' +
                 ", jobType='" + jobType + '\'' +
                 ", salary='" + salary + '\'' +
                 ", remote='" + remote + '\'' +
@@ -75,20 +75,20 @@ public class JobPostActivity {
         this.postedById = postedById;
     }
 
-    public JobLocation getJobLocation() {
-        return jobLocation;
+    public JobLocation getJobLocationId() {
+        return jobLocationId;
     }
 
-    public void setJobLocation(JobLocation jobLocation) {
-        this.jobLocation = jobLocation;
+    public void setJobLocationId(JobLocation jobLocationId) {
+        this.jobLocationId = jobLocationId;
     }
 
-    public JobCompany getJobCompany() {
-        return jobCompany;
+    public JobCompany getJobCompanyId() {
+        return jobCompanyId;
     }
 
-    public void setJobCompany(JobCompany jobCompany) {
-        this.jobCompany = jobCompany;
+    public void setJobCompanyId(JobCompany jobCompanyId) {
+        this.jobCompanyId = jobCompanyId;
     }
 
     public Boolean getActive() {
@@ -107,12 +107,12 @@ public class JobPostActivity {
         isSaved = saved;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionOfJob() {
+        return descriptionOfJob;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionOfJob(String description) {
+        this.descriptionOfJob = descriptionOfJob;
     }
 
     public String getJobType() {
@@ -155,14 +155,14 @@ public class JobPostActivity {
         this.jobTitle = jobTitle;
     }
 
-    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocation, JobCompany jobCompany, Boolean isActive, Boolean isSaved, String description, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
+    public JobPostActivity(Integer jobPostId, Users postedById, JobLocation jobLocationId, JobCompany jobCompanyId, Boolean isActive, Boolean isSaved, String description, String jobType, String salary, String remote, Date postedDate, String jobTitle) {
         this.jobPostId = jobPostId;
         this.postedById = postedById;
-        this.jobLocation = jobLocation;
-        this.jobCompany = jobCompany;
+        this.jobLocationId = jobLocationId;
+        this.jobCompanyId = jobCompanyId;
         this.isActive = isActive;
         this.isSaved = isSaved;
-        this.description = description;
+        this.descriptionOfJob = descriptionOfJob;
         this.jobType = jobType;
         this.salary = salary;
         this.remote = remote;
